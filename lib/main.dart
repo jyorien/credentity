@@ -1,3 +1,4 @@
+import 'package:credentity/features/qrcode/qrcode.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -25,12 +26,9 @@ class App extends StatelessWidget {
           900: Color.fromRGBO(26, 30, 100, 1)
         }),
         fontFamily: "SFProText",
+        scaffoldBackgroundColor: Colors.white,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Credentity"),
-        ),
-      ),
+      home: const QRCodeScreen(),
     );
   }
 }
