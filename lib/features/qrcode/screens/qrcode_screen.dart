@@ -1,3 +1,4 @@
+import 'package:credentity/features/qrcode/qrcode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -16,7 +17,7 @@ class QRCodeScreen extends StatelessWidget {
               const Text(
                 "QR Code",
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w800,
                   fontSize: 36,
                 ),
               ),
@@ -38,7 +39,7 @@ class QRCodeScreen extends StatelessWidget {
                 child: Text(
                   "Scan or Generate\nyour own QR code",
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w800,
                     fontSize: 23,
                   ),
                   textAlign: TextAlign.center,
@@ -60,7 +61,11 @@ class QRCodeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      CameraScreen.route(),
+                    );
+                  },
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 27,
