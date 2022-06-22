@@ -28,7 +28,7 @@ class App extends StatelessWidget {
         fontFamily: "SFProText",
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const QRCodeScreen(),
+      home: const GenerateScreen(),
     );
   }
 }
