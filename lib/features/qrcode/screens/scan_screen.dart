@@ -4,20 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-class CameraScreen extends StatefulWidget {
-  const CameraScreen({Key? key}) : super(key: key);
+class ScanScreen extends StatefulWidget {
+  const ScanScreen({Key? key}) : super(key: key);
 
   static Route route() {
     return MaterialPageRoute(
-      builder: (_) => const CameraScreen(),
+      builder: (_) => const ScanScreen(),
     );
   }
 
   @override
-  State<CameraScreen> createState() => _CameraScreenState();
+  State<ScanScreen> createState() => _ScanScreenState();
 }
 
-class _CameraScreenState extends State<CameraScreen> {
+class _ScanScreenState extends State<ScanScreen> {
   static const DARREN_MOVE_UP = 30;
   final _qrKey = GlobalKey();
   late QRViewController _controller;
