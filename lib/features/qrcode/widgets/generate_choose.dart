@@ -1,8 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:credentity/features/qrcode/qrcode.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class GenerateChoose extends StatefulWidget {
-  const GenerateChoose({Key? key}) : super(key: key);
+  const GenerateChoose({
+    Key? key,
+    required this.setRecord,
+  }) : super(key: key);
+
+  final Function(Record) setRecord;
 
   @override
   State<GenerateChoose> createState() => _GenerateChooseState();
@@ -101,7 +108,22 @@ class _GenerateChooseState extends State<GenerateChoose> {
                   borderRadius: BorderRadius.circular(7),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () async {
+                final record = Record(
+                  uuid: const Uuid().v4(),
+                  expires: Timestamp.fromDate(
+                    DateTime.now().add(const Duration(minutes: 5)),
+                  ),
+                  data: {},
+                );
+
+                await FirebaseFirestore.instance
+                    .collection("records")
+                    .doc(record.uuid)
+                    .set(record.toJson());
+
+                widget.setRecord(record);
+              },
               child: const Text("Next"),
             ),
           ),

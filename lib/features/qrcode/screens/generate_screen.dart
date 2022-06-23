@@ -15,6 +15,8 @@ class GenerateScreen extends StatefulWidget {
 }
 
 class _GenerateScreenState extends State<GenerateScreen> {
+  Record? _record;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +47,16 @@ class _GenerateScreenState extends State<GenerateScreen> {
                   ],
                 ),
               ),
-              const Center(child: GenerateShow()),
+              Center(
+                child: _record != null
+                    ? GenerateShow(
+                        record: _record!,
+                        setRecord: (record) => setState(() => _record = record),
+                      )
+                    : GenerateChoose(
+                        setRecord: (record) => setState(() => _record = record),
+                      ),
+              ),
               const SizedBox(height: 60),
             ],
           ),

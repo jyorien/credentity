@@ -1,13 +1,56 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:credentity/features/qrcode/qrcode.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
+import 'package:uuid/uuid.dart';
 
 class GenerateShow extends StatefulWidget {
-  const GenerateShow({Key? key}) : super(key: key);
+  const GenerateShow({
+    Key? key,
+    required this.record,
+    required this.setRecord,
+  }) : super(key: key);
+
+  final Record record;
+
+  final Function(Record) setRecord;
 
   @override
   State<GenerateShow> createState() => _GenerateShowState();
 }
 
 class _GenerateShowState extends State<GenerateShow> {
+  @override
+  void initState() {
+    super.initState();
+
+    Timer.periodic(
+      const Duration(seconds: 1),
+      (_) => checkForRefresh(),
+    );
+  }
+
+  void checkForRefresh() async {
+    if (widget.record.expires.toDate().difference(DateTime.now()).inSeconds < 1) {
+      final record = Record(
+        uuid: const Uuid().v4(),
+        expires: Timestamp.fromDate(
+          DateTime.now().add(const Duration(minutes: 5)),
+        ),
+        data: widget.record.data,
+      );
+
+      await FirebaseFirestore.instance.collection("records").doc(widget.record.uuid).delete();
+      await FirebaseFirestore.instance.collection("records").doc(record.uuid).set(record.toJson());
+
+      widget.setRecord(record);
+    } else {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,10 +63,11 @@ class _GenerateShowState extends State<GenerateShow> {
             color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.circular(18),
           ),
-          child: const Center(
-            child: SizedBox(
-              width: 168,
-              height: 168,
+          child: Center(
+            child: QrImage(
+              foregroundColor: Colors.white,
+              data: widget.record.uuid,
+              size: 168,
             ),
           ),
         ),
@@ -35,14 +79,22 @@ class _GenerateShowState extends State<GenerateShow> {
             color: Colors.black,
             borderRadius: BorderRadius.circular(5),
           ),
-          child: const Center(
-            child: Text(
-              "04:33",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.w300,
-              ),
+          child: Center(
+            child: Builder(
+              builder: (context) {
+                final difference = widget.record.expires.toDate().difference(DateTime.now());
+                final minutes = difference.inMinutes > 0 ? difference.inMinutes : 0;
+                final seconds = difference.inSeconds > 0 ? difference.inSeconds : 0;
+
+                return Text(
+                  "${minutes.toString().padLeft(2, "0")}:${(seconds % 60).toString().padLeft(2, "0")}",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w300,
+                  ),
+                );
+              },
             ),
           ),
         ),

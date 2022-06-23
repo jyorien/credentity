@@ -38,6 +38,8 @@ dependencies:
   qr_code_scanner: ^0.7.0
   firebase_core: ^1.18.0
   cloud_firestore: ^3.1.18
+  uuid: ^3.0.6
+  qr_flutter: ^4.0.0
 
 dev_dependencies:
   flutter_test:
