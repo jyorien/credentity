@@ -1,8 +1,12 @@
 import 'dart:async';
+import 'dart:io';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:credentity/features/qrcode/qrcode.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:uuid/uuid.dart';
 
@@ -22,6 +26,8 @@ class GenerateShow extends StatefulWidget {
 }
 
 class _GenerateShowState extends State<GenerateShow> {
+  final _genKey = GlobalKey();
+
   @override
   void initState() {
     super.initState();
@@ -51,25 +57,67 @@ class _GenerateShowState extends State<GenerateShow> {
     }
   }
 
+  void handleDownloadClick() async {
+    RenderRepaintBoundary boundary =
+        _genKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+    ui.Image image = await boundary.toImage();
+    ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    Uint8List pngBytes = byteData!.buffer.asUint8List();
+
+    // TODO: Replace path on iOS
+    File imgFile = File('/storage/emulated/0/Download/${widget.record.uuid}.png');
+    await imgFile.writeAsBytes(pngBytes);
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: const [
+            Icon(Icons.check, color: Colors.white),
+            SizedBox(width: 16),
+            Text("Image saved to Downloads folder"),
+          ],
+        ),
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         const SizedBox(height: 32),
-        Container(
-          width: 270,
-          height: 270,
-          decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
-            borderRadius: BorderRadius.circular(18),
-          ),
-          child: Center(
-            child: QrImage(
-              foregroundColor: Colors.white,
-              data: widget.record.uuid,
-              size: 168,
+        Stack(
+          children: [
+            RepaintBoundary(
+              key: _genKey,
+              child: Container(
+                color: Colors.white,
+                padding: const EdgeInsets.all(10),
+                child: QrImage(
+                  foregroundColor: Colors.black,
+                  data: widget.record.uuid,
+                  size: 250,
+                ),
+              ),
             ),
-          ),
+            Container(
+              width: 270,
+              height: 270,
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                borderRadius: BorderRadius.circular(18),
+              ),
+              child: Center(
+                child: QrImage(
+                  foregroundColor: Colors.white,
+                  data: widget.record.uuid,
+                  size: 168,
+                ),
+              ),
+            ),
+          ],
         ),
         const SizedBox(height: 12),
         Container(
@@ -149,7 +197,7 @@ class _GenerateShowState extends State<GenerateShow> {
                 ),
               ),
             ),
-            onPressed: () {},
+            onPressed: handleDownloadClick,
             child: Row(
               children: const [
                 Icon(
