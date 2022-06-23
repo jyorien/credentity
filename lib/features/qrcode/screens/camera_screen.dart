@@ -140,9 +140,7 @@ class _CameraScreenState extends State<CameraScreen> {
             left: (MediaQuery.of(context).size.width - 300) / 2,
             child: Material(
               color: const Color(0x001E2022).withOpacity(1),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(25),
-              ),
+              borderRadius: BorderRadius.circular(25),
               child: const SizedBox(
                 width: 300,
                 height: 50,

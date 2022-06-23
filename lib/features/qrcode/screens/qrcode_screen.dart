@@ -73,9 +73,7 @@ class QRCodeScreen extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       color: Theme.of(context).primaryColor.withOpacity(0.59),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(5),
-                      ),
+                      borderRadius: BorderRadius.circular(5),
                     ),
                     child: Row(
                       children: [
@@ -84,9 +82,7 @@ class QRCodeScreen extends StatelessWidget {
                           height: 44,
                           decoration: BoxDecoration(
                             color: Theme.of(context).primaryColor.withOpacity(1),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(5),
-                            ),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                           child: Center(
                             child: SvgPicture.asset(
@@ -127,7 +123,11 @@ class QRCodeScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(
+                      GenerateScreen.route(),
+                    );
+                  },
                   child: Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 27,
@@ -135,9 +135,7 @@ class QRCodeScreen extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       color: Theme.of(context).primaryColor.withOpacity(0.59),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(5),
-                      ),
+                      borderRadius: BorderRadius.circular(5),
                     ),
                     child: Row(
                       children: [
@@ -146,9 +144,7 @@ class QRCodeScreen extends StatelessWidget {
                           height: 44,
                           decoration: BoxDecoration(
                             color: Theme.of(context).primaryColor.withOpacity(1),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(5),
-                            ),
+                            borderRadius: BorderRadius.circular(5),
                           ),
                           child: Center(
                             child: SvgPicture.asset(

@@ -13,7 +13,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: "Credentity",
       theme: ThemeData(
-        primarySwatch: const MaterialColor(0x00434DFF, {
+        primarySwatch: const MaterialColor(0xFF434DFF, {
           50: Color.fromRGBO(26, 30, 100, 0.1),
           100: Color.fromRGBO(26, 30, 100, 0.2),
           200: Color.fromRGBO(26, 30, 100, 0.3),
