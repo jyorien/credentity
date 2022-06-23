@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Accordion extends StatelessWidget {
-  const Accordion({
+class GenerateAccordion extends StatelessWidget {
+  const GenerateAccordion({
     Key? key,
     required this.icon,
     required this.title,
