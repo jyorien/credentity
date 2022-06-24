@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:credentity/features/qrcode/qrcode.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +30,57 @@ class _AuthorizeScreenState extends State<AuthorizeScreen> {
     "Work": Icons.work,
     "Disabilities": Icons.accessible,
   };
+
+  final _data = {
+    "Personal Information": {
+      "Name": "Darren Ong Yan En",
+      "Phone Number": "90101010",
+    },
+    "Medical History": {
+      "Vaccination Status": "Vaccinated",
+      "Past Records": "NIL",
+      "Health Checklist": "NIL",
+    },
+    "Education": {
+      "Primary School": "Saint Andrews Junior School",
+      "Secondary School": "Saint Andrews Secondary School",
+      "University": "NIL",
+      "Masters": "NIL",
+      "Certificates (Technical/Non Technical)": "NIL",
+    },
+    "Work": {
+      "Work Attestations by previous employers": "NIL",
+    },
+    "Disabilities": {
+      "Physical Disabilities": "NIL",
+      "Mental Disabilities": "NIL",
+    },
+  };
+
+  void onAuthorizeClick() async {
+    await FirebaseFirestore.instance.collection("records").doc(widget.record.uuid).update({
+      "data": widget.record.data.map(
+        (key, value) => MapEntry(
+          key,
+          value.map(
+            (key2, value) => MapEntry(
+              key2,
+              _data[key]![key2]!,
+            ),
+          ),
+        ),
+      ),
+    });
+
+    showDialog(
+      context: context,
+      builder: (_) {
+        return const SuccessDialog();
+      },
+    ).then((_) {
+      Navigator.of(context).pop();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +193,7 @@ class _AuthorizeScreenState extends State<AuthorizeScreen> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: onAuthorizeClick,
                   child: const Text("Authorize"),
                 ),
               ),

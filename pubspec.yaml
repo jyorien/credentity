@@ -40,6 +40,7 @@ dependencies:
   cloud_firestore: ^3.1.18
   uuid: ^3.0.6
   qr_flutter: ^4.0.0
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:

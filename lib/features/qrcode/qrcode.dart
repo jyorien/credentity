@@ -7,3 +7,4 @@ export 'widgets/authorize_accordion.dart';
 export 'widgets/generate_accordion.dart';
 export 'widgets/generate_choose.dart';
 export 'widgets/generate_show.dart';
+export 'widgets/success_dialog.dart';
