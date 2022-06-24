@@ -59,6 +59,7 @@ class _AuthorizeScreenState extends State<AuthorizeScreen> {
 
   void onAuthorizeClick() async {
     await FirebaseFirestore.instance.collection("records").doc(widget.record.uuid).update({
+      "verified": Timestamp.now(),
       "data": widget.record.data.map(
         (key, value) => MapEntry(
           key,
@@ -180,8 +181,8 @@ class _AuthorizeScreenState extends State<AuthorizeScreen> {
                       const Divider(height: 1),
                     ])
                 .expand((widgets) => widgets)
-                .take(9)
-                .toList(),
+                .toList()
+              ..removeLast(),
             const SizedBox(height: 20),
             Center(
               child: SizedBox(

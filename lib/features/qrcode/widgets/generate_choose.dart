@@ -56,6 +56,7 @@ class _GenerateChooseState extends State<GenerateChoose> {
       expires: Timestamp.fromDate(
         DateTime.now().add(const Duration(minutes: 5)),
       ),
+      verified: null,
       data: Map.fromEntries(
         _data.entries
             .map(
@@ -99,8 +100,8 @@ class _GenerateChooseState extends State<GenerateChoose> {
                   const Divider(height: 1),
                 ])
             .expand((widgets) => widgets)
-            .take(9)
-            .toList(),
+            .toList()
+          ..removeLast(),
         const SizedBox(height: 20),
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),

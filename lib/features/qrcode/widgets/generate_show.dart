@@ -36,6 +36,26 @@ class _GenerateShowState extends State<GenerateShow> {
       const Duration(seconds: 1),
       (_) => checkForRefresh(),
     );
+
+    FirebaseFirestore.instance
+        .collection("records")
+        .doc(widget.record.uuid)
+        .snapshots()
+        .listen((snap) {
+      if (!snap.exists) return;
+
+      final record = Record.fromJson(snap.data()!);
+      if (record.verified == null) return;
+
+      showDialog(
+        context: context,
+        builder: (_) {
+          return ReceivedDialog(data: record.data);
+        },
+      ).then((_) {
+        Navigator.of(context).pop();
+      });
+    });
   }
 
   void checkForRefresh() async {
@@ -47,6 +67,7 @@ class _GenerateShowState extends State<GenerateShow> {
         expires: Timestamp.fromDate(
           DateTime.now().add(const Duration(minutes: 5)),
         ),
+        verified: null,
         data: widget.record.data,
       );
 
