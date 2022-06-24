@@ -26,8 +26,8 @@ class _GenerateChooseState extends State<GenerateChoose> {
 
   final _data = {
     "Personal Information": {
-      "Name": false,
-      "Phone Number": false,
+      "Name": true,
+      "Phone Number": true,
     },
     "Medical History": {
       "Vaccination Status": false,
@@ -49,6 +49,33 @@ class _GenerateChooseState extends State<GenerateChoose> {
       "Mental Disabilities": false,
     },
   };
+
+  void handleNextClick() async {
+    final record = Record(
+      uuid: const Uuid().v4(),
+      expires: Timestamp.fromDate(
+        DateTime.now().add(const Duration(minutes: 5)),
+      ),
+      data: Map.fromEntries(
+        _data.entries
+            .map(
+              (entry) => MapEntry(
+                entry.key,
+                Map.fromEntries(
+                  entry.value.entries.where((entry) => entry.value).map(
+                        (entry) => MapEntry(entry.key, null),
+                      ),
+                ),
+              ),
+            )
+            .where((entry) => entry.value.isNotEmpty),
+      ),
+    );
+
+    await FirebaseFirestore.instance.collection("records").doc(record.uuid).set(record.toJson());
+
+    widget.setRecord(record);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,22 +135,7 @@ class _GenerateChooseState extends State<GenerateChoose> {
                   borderRadius: BorderRadius.circular(7),
                 ),
               ),
-              onPressed: () async {
-                final record = Record(
-                  uuid: const Uuid().v4(),
-                  expires: Timestamp.fromDate(
-                    DateTime.now().add(const Duration(minutes: 5)),
-                  ),
-                  data: {},
-                );
-
-                await FirebaseFirestore.instance
-                    .collection("records")
-                    .doc(record.uuid)
-                    .set(record.toJson());
-
-                widget.setRecord(record);
-              },
+              onPressed: handleNextClick,
               child: const Text("Next"),
             ),
           ),

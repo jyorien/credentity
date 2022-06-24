@@ -39,6 +39,8 @@ class _GenerateShowState extends State<GenerateShow> {
   }
 
   void checkForRefresh() async {
+    if (!mounted) return;
+
     if (widget.record.expires.toDate().difference(DateTime.now()).inSeconds < 1) {
       final record = Record(
         uuid: const Uuid().v4(),
