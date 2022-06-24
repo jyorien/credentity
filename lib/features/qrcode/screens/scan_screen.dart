@@ -44,6 +44,8 @@ class _ScanScreenState extends State<ScanScreen> {
       final record = Record.fromJson(snap.data()!);
       if (DateTime.now().isAfter(record.expires.toDate())) throw Error();
 
+      _scanning = true;
+      _controller.resumeCamera();
       Navigator.of(context).push(
         AuthorizeScreen.route(
           Record.fromJson(snap.data()!),
