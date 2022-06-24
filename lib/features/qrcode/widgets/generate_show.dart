@@ -50,7 +50,6 @@ class _GenerateShowState extends State<GenerateShow> {
         data: widget.record.data,
       );
 
-      await FirebaseFirestore.instance.collection("records").doc(widget.record.uuid).delete();
       await FirebaseFirestore.instance.collection("records").doc(record.uuid).set(record.toJson());
 
       widget.setRecord(record);
