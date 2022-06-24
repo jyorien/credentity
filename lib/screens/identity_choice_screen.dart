@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ocr_scan_screen.dart';
 
 class IdentityChoiceScreen extends StatelessWidget {
   const IdentityChoiceScreen({Key? key}) : super(key: key);
@@ -40,7 +41,8 @@ class IdentityChoiceScreen extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  // TODO: go to camera screen
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => OcrScanScreen()));
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
