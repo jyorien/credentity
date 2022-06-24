@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:credentity/features/qrcode/qrcode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -30,12 +32,43 @@ class _ScanScreenState extends State<ScanScreen> {
     super.dispose();
   }
 
-  void onDataScanned(Barcode barcode) {
+  void onDataScanned(Barcode barcode) async {
     if (!_scanning) return;
     _scanning = false;
     _controller.pauseCamera();
 
-    print(barcode.code);
+    try {
+      final snap = await FirebaseFirestore.instance.collection("records").doc(barcode.code).get();
+      if (!snap.exists) throw Error();
+
+      final record = Record.fromJson(snap.data()!);
+      if (DateTime.now().isAfter(record.expires.toDate())) throw Error();
+
+      Navigator.of(context).push(
+        AuthorizeScreen.route(
+          Record.fromJson(snap.data()!),
+        ),
+      );
+    } catch (err) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Invalid QR Code"),
+            content: const Text("This QR code is not associated with any user information."),
+            actions: [
+              ElevatedButton(
+                child: const Text("OK"),
+                onPressed: Navigator.of(context).pop,
+              ),
+            ],
+          );
+        },
+      ).then((_) {
+        _scanning = true;
+        _controller.resumeCamera();
+      });
+    }
   }
 
   @override

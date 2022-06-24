@@ -1,44 +1,19 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:credentity/features/qrcode/qrcode.dart';
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
 
 class AuthorizeScreen extends StatefulWidget {
-  AuthorizeScreen({Key? key}) : super(key: key);
+  const AuthorizeScreen({
+    Key? key,
+    required this.record,
+  }) : super(key: key);
 
-  final record = Record(
-    uuid: const Uuid().v4(),
-    expires: Timestamp.now(),
-    data: {
-      "Personal Information": {
-        "Name": null,
-        "Phone Number": null,
-      },
-      "Medical History": {
-        "Vaccination Status": null,
-        "Past Records": null,
-        "Health Checklist": null,
-      },
-      "Education": {
-        "Primary School": null,
-        "Secondary School": null,
-        "University": null,
-        "Masters": null,
-        "Certificates (Technical/Non Technical)": null,
-      },
-      "Work": {
-        "Work Attestations by previous employers": null,
-      },
-      "Disabilities": {
-        "Physical Disabilities": null,
-        "Mental Disabilities": null,
-      },
-    },
-  );
+  final Record record;
 
-  static Route route() {
+  static Route route(Record record) {
     return MaterialPageRoute(
-      builder: (_) => AuthorizeScreen(),
+      builder: (_) => AuthorizeScreen(
+        record: record,
+      ),
     );
   }
 
@@ -183,7 +158,7 @@ class _AuthorizeScreenState extends State<AuthorizeScreen> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: Navigator.of(context).pop,
                   child: const Text("Terminate"),
                 ),
               ),
