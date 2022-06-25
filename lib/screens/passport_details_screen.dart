@@ -4,6 +4,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:credentity/models/passport_data.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:credentity/providers/user_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:credentity/screens/verify_steps_screen.dart';
 
 class PassportDetailsScreen extends StatefulWidget {
   final filePath;
@@ -273,7 +276,29 @@ class _PassportDetailsScreenState extends State<PassportDetailsScreen> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              // TODO: send uri to next page
+                              UserProvider userProvider =
+                                  Provider.of<UserProvider>(context,
+                                      listen: false);
+                              final finalPassportData = PassportData();
+                              finalPassportData.firstName =
+                                  _firstNameController.text;
+                              finalPassportData.lastName =
+                                  _lastNameController.text;
+                              finalPassportData.dateOfBirth =
+                                  _dobController.text;
+                              finalPassportData.dateOfExpiration =
+                                  _doeController.text;
+                              finalPassportData.sex = _sexController.text;
+                              finalPassportData.countryRegion =
+                                  _countryController.text;
+                              finalPassportData.passportNumber =
+                                  _passportNumberController.text;
+                              finalPassportData.nationality =
+                                  _nationalityController.text;
+                              userProvider.setPassportData(finalPassportData);
+                              userProvider.setPassportPhotoFile(file);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => VerifyStepsScreen()));
                             },
                             child: Container(
                               padding: EdgeInsets.symmetric(

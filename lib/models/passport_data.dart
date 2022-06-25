@@ -1,14 +1,14 @@
 class PassportData {
-  final String? firstName;
-  final String? lastName;
-  final String? passportNumber;
-  final String? sex;
-  final String? dateOfBirth;
-  final String? dateOfExpiration;
-  final String? countryRegion;
-  final String? nationality;
+  String? firstName;
+  String? lastName;
+  String? passportNumber;
+  String? sex;
+  String? dateOfBirth;
+  String? dateOfExpiration;
+  String? countryRegion;
+  String? nationality;
 
-  const PassportData(
+  PassportData(
       {this.firstName,
       this.lastName,
       this.passportNumber,
