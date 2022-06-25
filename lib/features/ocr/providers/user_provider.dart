@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:credentity/models/passport_data.dart';
 import 'dart:io';
+import '../models/passport_data.dart';
 
 class UserProvider extends ChangeNotifier {
   PassportData _passportData = PassportData();

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'screens/identity_choice_screen.dart';
 import 'package:camera/camera.dart';
 import 'package:provider/provider.dart';
-import 'package:credentity/providers/user_provider.dart';
+
+import 'features/ocr/providers/user_provider.dart';
+import 'features/ocr/screens/identity_choice_screen.dart';
 
 late List<CameraDescription> cameras;
 void main() async {

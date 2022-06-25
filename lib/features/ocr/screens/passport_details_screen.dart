@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:credentity/models/passport_data.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:credentity/providers/user_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:credentity/screens/verify_steps_screen.dart';
+import '../models/passport_data.dart';
+import '../providers/user_provider.dart';
+import 'verify_steps_screen.dart';
 
 class PassportDetailsScreen extends StatefulWidget {
   final filePath;
