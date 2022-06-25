@@ -19,8 +19,8 @@ class UserProvider extends ChangeNotifier {
   File _passportPhotoFile = File.fromUri(Uri());
   File get passportPhotoFile => _passportPhotoFile;
 
-  File _faceFile = File.fromUri(Uri());
-  File get faceFile => _faceFile;
+  File? _faceFile;
+  File? get faceFile => _faceFile;
 
   setPassportData(PassportData data) {
     _passportData = data;
