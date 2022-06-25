@@ -1,9 +1,19 @@
-import 'package:flutter/foundation.dart';
 import 'dart:io';
-import '../models/passport_data.dart';
+
+import 'package:credentity/features/ocr/ocr.dart';
+import 'package:flutter/material.dart';
 
 class UserProvider extends ChangeNotifier {
-  PassportData _passportData = PassportData();
+  PassportData _passportData = const PassportData(
+    firstName: "",
+    lastName: "",
+    passportNumber: "",
+    sex: "",
+    dateOfBirth: "",
+    dateOfExpiration: "",
+    countryRegion: "",
+    nationality: "",
+  );
   PassportData get passportData => _passportData;
 
   File _passportPhotoFile = File.fromUri(Uri());

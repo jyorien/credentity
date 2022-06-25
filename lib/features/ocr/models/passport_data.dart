@@ -1,22 +1,23 @@
 class PassportData {
-  String? firstName;
-  String? lastName;
-  String? passportNumber;
-  String? sex;
-  String? dateOfBirth;
-  String? dateOfExpiration;
-  String? countryRegion;
-  String? nationality;
+  final String firstName;
+  final String lastName;
+  final String passportNumber;
+  final String sex;
+  final String dateOfBirth;
+  final String dateOfExpiration;
+  final String countryRegion;
+  final String nationality;
 
-  PassportData(
-      {this.firstName,
-      this.lastName,
-      this.passportNumber,
-      this.sex,
-      this.dateOfBirth,
-      this.dateOfExpiration,
-      this.countryRegion,
-      this.nationality});
+  const PassportData({
+    required this.firstName,
+    required this.lastName,
+    required this.passportNumber,
+    required this.sex,
+    required this.dateOfBirth,
+    required this.dateOfExpiration,
+    required this.countryRegion,
+    required this.nationality,
+  });
 
   factory PassportData.fromJson(Map<String, dynamic> json) => PassportData(
       firstName: json["FirstName"],
