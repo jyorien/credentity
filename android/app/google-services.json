@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "362151643727",
+    "project_id": "credentity-1dcce",
+    "storage_bucket": "credentity-1dcce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362151643727:android:59ac969420bf39bd98783a",
+        "android_client_info": {
+          "package_name": "com.example.credentity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "362151643727-t59oev0c950o9jg4lidgvc7qj95q0m6j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNsgdFq55mThSL0y-Y17feKXsQcRX4fXk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362151643727-t59oev0c950o9jg4lidgvc7qj95q0m6j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
