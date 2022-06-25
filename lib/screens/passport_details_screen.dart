@@ -37,7 +37,7 @@ class _PassportDetailsScreenState extends State<PassportDetailsScreen> {
             body: base64String),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Scaffold(
+            return const Scaffold(
                 body: Center(
                     child: SpinKitHourGlass(
               color: Colors.blueAccent,
@@ -59,7 +59,7 @@ class _PassportDetailsScreenState extends State<PassportDetailsScreen> {
               resizeToAvoidBottomInset: false,
               body: SafeArea(
                 child: Padding(
-                  padding: EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.all(24.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -67,130 +67,130 @@ class _PassportDetailsScreenState extends State<PassportDetailsScreen> {
                         controller: _firstNameController,
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
-                            icon: Icon(Icons.cancel_outlined),
+                            icon: const Icon(Icons.cancel_outlined),
                             onPressed: () {
                               _firstNameController.text = "";
                             },
                           ),
                           labelText: 'First Name',
-                          labelStyle: TextStyle(color: Colors.black),
+                          labelStyle: const TextStyle(color: Colors.black),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16.0,
                       ),
                       TextFormField(
                         controller: _lastNameController,
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
-                            icon: Icon(Icons.cancel_outlined),
+                            icon: const Icon(Icons.cancel_outlined),
                             onPressed: () {
                               _lastNameController.text = "";
                             },
                           ),
                           labelText: 'Last Name',
-                          labelStyle: TextStyle(color: Colors.black),
+                          labelStyle: const TextStyle(color: Colors.black),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16.0,
                       ),
                       TextFormField(
                         controller: _sexController,
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
-                            icon: Icon(Icons.cancel_outlined),
+                            icon: const Icon(Icons.cancel_outlined),
                             onPressed: () {
                               _sexController.text = "";
                             },
                           ),
                           labelText: 'Sex',
-                          labelStyle: TextStyle(color: Colors.black),
+                          labelStyle: const TextStyle(color: Colors.black),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16.0,
                       ),
                       TextFormField(
                         controller: _dobController,
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
-                            icon: Icon(Icons.cancel_outlined),
+                            icon: const Icon(Icons.cancel_outlined),
                             onPressed: () {
                               _dobController.text = "";
                             },
                           ),
                           labelText: 'Date of Birth',
-                          labelStyle: TextStyle(color: Colors.black),
+                          labelStyle: const TextStyle(color: Colors.black),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16.0,
                       ),
                       TextFormField(
                         controller: _doeController,
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
-                            icon: Icon(Icons.cancel_outlined),
+                            icon: const Icon(Icons.cancel_outlined),
                             onPressed: () {
                               _doeController.text = "";
                             },
                           ),
                           labelText: 'Date of Expiration',
-                          labelStyle: TextStyle(color: Colors.black),
+                          labelStyle: const TextStyle(color: Colors.black),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16.0,
                       ),
                       TextFormField(
@@ -198,77 +198,77 @@ class _PassportDetailsScreenState extends State<PassportDetailsScreen> {
                         decoration: InputDecoration(
                           labelText: 'Country Region',
                           suffixIcon: IconButton(
-                            icon: Icon(Icons.cancel_outlined),
+                            icon: const Icon(Icons.cancel_outlined),
                             onPressed: () {
                               _countryController.text = "";
                             },
                           ),
-                          labelStyle: TextStyle(color: Colors.black),
+                          labelStyle: const TextStyle(color: Colors.black),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16.0,
                       ),
                       TextFormField(
                         controller: _nationalityController,
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
-                            icon: Icon(Icons.cancel_outlined),
+                            icon: const Icon(Icons.cancel_outlined),
                             onPressed: () {
                               _nationalityController.text = "";
                             },
                           ),
                           labelText: 'Nationality',
-                          labelStyle: TextStyle(color: Colors.black),
+                          labelStyle: const TextStyle(color: Colors.black),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16.0,
                       ),
                       TextFormField(
                         controller: _passportNumberController,
                         decoration: InputDecoration(
                           suffixIcon: IconButton(
-                            icon: Icon(Icons.cancel_outlined),
+                            icon: const Icon(Icons.cancel_outlined),
                             onPressed: () {
                               _nationalityController.text = "";
                             },
                           ),
                           labelText: 'Passport Number',
-                          labelStyle: TextStyle(color: Colors.black),
+                          labelStyle: const TextStyle(color: Colors.black),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.black),
+                                const BorderSide(width: 1, color: Colors.black),
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16.0,
                       ),
                       Row(
@@ -298,26 +298,27 @@ class _PassportDetailsScreenState extends State<PassportDetailsScreen> {
                               userProvider.setPassportData(finalPassportData);
                               userProvider.setPassportPhotoFile(file);
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => VerifyStepsScreen()));
+                                  builder: (context) =>
+                                      const VerifyStepsScreen()));
                             },
                             child: Container(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 10.0, vertical: 5.0),
-                              child: Text(
+                              child: const Text(
                                 "Save Information",
                                 style: TextStyle(color: Colors.white),
                               ),
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   color: Color.fromRGBO(67, 77, 255, 1),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(12))),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 25.0,
                           ),
                           IconButton(
-                            icon: Icon(Icons.restart_alt),
+                            icon: const Icon(Icons.restart_alt),
                             onPressed: () {
                               Navigator.pop(context);
                             },

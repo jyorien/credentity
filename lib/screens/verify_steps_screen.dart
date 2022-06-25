@@ -13,40 +13,40 @@ class VerifyStepsScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(24.0),
           child: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back),
                 onPressed: () {
                   Navigator.pop(context);
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               Image.asset("assets/images/verify.png"),
-              Text(
+              const Text(
                 "Verify your account",
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
               ),
-              Text(
+              const Text(
                 "To ensure that the passport is truly yours, we require a face verification so that we know it is you.",
                 style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w500),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
-              Text(
+              const Text(
                 "Photo ID",
                 style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),
               ),
-              Text(
+              const Text(
                 "Take a photo of your ID, passport or Driver's License",
                 style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w500),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 6,
               ),
               Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -57,24 +57,24 @@ class VerifyStepsScreen extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                  child: Text(
+                  child: const Text(
                     "Retake Image",
                     style: TextStyle(color: Colors.deepPurpleAccent),
                   ),
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => OcrScanScreen()));
+                        builder: (context) => const OcrScanScreen()));
                   },
                 ),
               ]),
-              SizedBox(
+              const SizedBox(
                 height: 12.0,
               ),
-              Text(
+              const Text(
                 "Face Verification",
                 style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),
               ),
-              Text(
+              const Text(
                 "Take a selfie of yourself with your IC held at chest level",
                 style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.w500),
               )
