@@ -54,19 +54,19 @@ class _OcrScanScreenState extends State<OcrScanScreen> {
             child: CameraPreview(controller),
           ),
           Padding(
-              padding: EdgeInsets.all(24),
+              padding: const EdgeInsets.all(24),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.close,
                         color: Colors.white,
                       ),
                       Row(
-                        children: [
+                        children: const [
                           Icon(
                             Icons.flash_off,
                             color: Colors.white,
@@ -90,12 +90,12 @@ class _OcrScanScreenState extends State<OcrScanScreen> {
                           .onError((error, stackTrace) => print(error));
                     },
                     child: Container(
-                      padding: EdgeInsets.all(15.0),
-                      child: Icon(
+                      padding: const EdgeInsets.all(15.0),
+                      child: const Icon(
                         Icons.camera_alt,
                         color: Colors.white,
                       ),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           color: Colors.blueAccent,
                           borderRadius: BorderRadius.all(Radius.circular(30))),
                     ),
