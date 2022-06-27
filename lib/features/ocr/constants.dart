@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-TextFormField customTextFormField(
-    {required String labelText, required TextEditingController controller}) {
+TextFormField customTextFormField({
+  required String labelText,
+  required TextEditingController controller,
+}) {
   return TextFormField(
     controller: controller,
     decoration: InputDecoration(

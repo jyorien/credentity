@@ -7,9 +7,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
-import '../constants.dart';
-
-class PassportDetailsScreen extends StatefulWidget {
+class PassportDetailsScreen extends StatelessWidget {
   const PassportDetailsScreen({
     Key? key,
     required this.filePath,
@@ -18,28 +16,24 @@ class PassportDetailsScreen extends StatefulWidget {
   final String filePath;
 
   @override
-  State<PassportDetailsScreen> createState() => _PassportDetailsScreenState();
-}
-
-class _PassportDetailsScreenState extends State<PassportDetailsScreen> {
-  final _firstNameController = TextEditingController();
-  final _lastNameController = TextEditingController();
-  final _passportNumberController = TextEditingController();
-  final _sexController = TextEditingController();
-  final _dobController = TextEditingController();
-  final _doeController = TextEditingController();
-  final _countryController = TextEditingController();
-  final _nationalityController = TextEditingController();
-
-  @override
   Widget build(BuildContext context) {
-    final file = File.fromUri(Uri.file(widget.filePath));
+    final firstNameController = TextEditingController();
+    final lastNameController = TextEditingController();
+    final passportNumberController = TextEditingController();
+    final sexController = TextEditingController();
+    final dobController = TextEditingController();
+    final doeController = TextEditingController();
+    final countryController = TextEditingController();
+    final nationalityController = TextEditingController();
+
+    final file = File.fromUri(Uri.file(filePath));
     final base64String = base64Encode(file.readAsBytesSync());
 
     return FutureBuilder(
       future: http.post(
         Uri.parse(
-            "https://dy5fhp4lctrfz6oszozwnwfbrq0kjrfp.lambda-url.ap-southeast-1.on.aws/"),
+          "https://dy5fhp4lctrfz6oszozwnwfbrq0kjrfp.lambda-url.ap-southeast-1.on.aws/",
+        ),
         body: base64String,
       ),
       builder: (context, snapshot) {
@@ -57,14 +51,14 @@ class _PassportDetailsScreenState extends State<PassportDetailsScreen> {
         String data = (snapshot.data as http.Response).body;
         final passportData = PassportData.fromJson(json.decode(data));
 
-        _firstNameController.text = passportData.firstName;
-        _lastNameController.text = passportData.lastName;
-        _passportNumberController.text = passportData.passportNumber;
-        _sexController.text = passportData.sex;
-        _dobController.text = passportData.dateOfBirth;
-        _doeController.text = passportData.dateOfExpiration;
-        _countryController.text = passportData.countryRegion;
-        _nationalityController.text = passportData.nationality;
+        firstNameController.text = passportData.firstName;
+        lastNameController.text = passportData.lastName;
+        passportNumberController.text = passportData.passportNumber;
+        sexController.text = passportData.sex;
+        dobController.text = passportData.dateOfBirth;
+        doeController.text = passportData.dateOfExpiration;
+        countryController.text = passportData.countryRegion;
+        nationalityController.text = passportData.nationality;
 
         return Scaffold(
           resizeToAvoidBottomInset: false,
@@ -75,50 +69,60 @@ class _PassportDetailsScreenState extends State<PassportDetailsScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   customTextFormField(
-                      labelText: "First Name",
-                      controller: _firstNameController),
+                    labelText: "First Name",
+                    controller: firstNameController,
+                  ),
                   const SizedBox(height: 16),
                   customTextFormField(
-                      labelText: "Last Name", controller: _lastNameController),
+                    labelText: "Last Name",
+                    controller: lastNameController,
+                  ),
                   const SizedBox(height: 16),
                   customTextFormField(
-                      labelText: "Sex", controller: _sexController),
+                    labelText: "Sex",
+                    controller: sexController,
+                  ),
                   const SizedBox(height: 16),
                   customTextFormField(
-                      labelText: "Date of Birth", controller: _dobController),
+                    labelText: "Date of Birth",
+                    controller: dobController,
+                  ),
                   const SizedBox(height: 16),
                   customTextFormField(
-                      labelText: "Date of Expiration",
-                      controller: _doeController),
+                    labelText: "Date of Expiration",
+                    controller: doeController,
+                  ),
                   const SizedBox(height: 16),
                   customTextFormField(
-                      labelText: "Country Region",
-                      controller: _countryController),
+                    labelText: "Country Region",
+                    controller: countryController,
+                  ),
                   const SizedBox(height: 16),
                   customTextFormField(
-                      labelText: "Nationality",
-                      controller: _nationalityController),
+                    labelText: "Nationality",
+                    controller: nationalityController,
+                  ),
                   const SizedBox(height: 16),
                   customTextFormField(
-                      labelText: "Passport Number",
-                      controller: _passportNumberController),
+                    labelText: "Passport Number",
+                    controller: passportNumberController,
+                  ),
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       GestureDetector(
                         onTap: () {
-                          UserProvider userProvider =
-                              context.read<UserProvider>();
+                          final userProvider = context.read<UserProvider>();
                           final finalPassportData = PassportData(
-                            firstName: _firstNameController.text,
-                            lastName: _lastNameController.text,
-                            dateOfBirth: _dobController.text,
-                            dateOfExpiration: _doeController.text,
-                            sex: _sexController.text,
-                            countryRegion: _countryController.text,
-                            passportNumber: _passportNumberController.text,
-                            nationality: _nationalityController.text,
+                            firstName: firstNameController.text,
+                            lastName: lastNameController.text,
+                            dateOfBirth: dobController.text,
+                            dateOfExpiration: doeController.text,
+                            sex: sexController.text,
+                            countryRegion: countryController.text,
+                            passportNumber: passportNumberController.text,
+                            nationality: nationalityController.text,
                           );
 
                           userProvider.setPassportData(finalPassportData);
@@ -148,9 +152,7 @@ class _PassportDetailsScreenState extends State<PassportDetailsScreen> {
                       const SizedBox(width: 25),
                       IconButton(
                         icon: const Icon(Icons.restart_alt),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
+                        onPressed: Navigator.of(context).pop,
                       )
                     ],
                   ),

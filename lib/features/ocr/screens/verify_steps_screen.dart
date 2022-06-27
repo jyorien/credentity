@@ -60,9 +60,7 @@ class VerifyStepsScreen extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        const SizedBox(
-                          height: 12,
-                        ),
+                        const SizedBox(height: 12),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -73,8 +71,7 @@ class VerifyStepsScreen extends StatelessWidget {
                             TextButton(
                               child: const Text(
                                 "Retake Image",
-                                style:
-                                    TextStyle(color: Colors.deepPurpleAccent),
+                                style: TextStyle(color: Colors.deepPurpleAccent),
                               ),
                               onPressed: () {
                                 Navigator.of(context).push(
@@ -91,76 +88,71 @@ class VerifyStepsScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 24),
-                Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  userProvider.faceFile != null
-                      ? SvgPicture.asset("assets/icons/green_cam.svg")
-                      : SvgPicture.asset("assets/icons/red_cam.svg"),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Face Verification",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    userProvider.faceFile != null
+                        ? SvgPicture.asset("assets/icons/green_cam.svg")
+                        : SvgPicture.asset("assets/icons/red_cam.svg"),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Face Verification",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      const Text(
-                        "Take a selfie of yourself with your IC held at chest level",
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w500,
+                        const Text(
+                          "Take a selfie of yourself with your IC held at chest level",
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      userProvider.faceFile != null
-                          ? Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 100,
-                                  child: Image.file(userProvider.faceFile!),
-                                ),
-                                TextButton(
-                                  child: const Text(
-                                    "Retake Image",
-                                    style: TextStyle(
-                                        color: Colors.deepPurpleAccent),
+                        const SizedBox(height: 12),
+                        userProvider.faceFile != null
+                            ? Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 100,
+                                    child: Image.file(userProvider.faceFile!),
                                   ),
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const SelfieScreen(),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ],
-                            )
-                          : Row(
-                              children: const [
-                                Icon(
-                                  Icons.error_outline,
-                                  color: Colors.red,
-                                ),
-                                SizedBox(
-                                  width: 2.0,
-                                ),
-                                Text(
-                                  "Image has not been taken",
-                                  style: TextStyle(fontSize: 10),
-                                )
-                              ],
-                            ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
-                    ],
-                  ),
-                ]),
+                                  TextButton(
+                                    child: const Text(
+                                      "Retake Image",
+                                      style: TextStyle(color: Colors.deepPurpleAccent),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) => const SelfieScreen(),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ],
+                              )
+                            : Row(
+                                children: const [
+                                  Icon(
+                                    Icons.error_outline,
+                                    color: Colors.red,
+                                  ),
+                                  SizedBox(width: 2),
+                                  Text(
+                                    "Image has not been taken",
+                                    style: TextStyle(fontSize: 10),
+                                  )
+                                ],
+                              ),
+                        const SizedBox(height: 20),
+                      ],
+                    ),
+                  ],
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
